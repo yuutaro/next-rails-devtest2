@@ -1,0 +1,49 @@
+version: '3'
+services:
+
+  db:
+    image: postgres:16.2
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: next-rails-devtest2-db
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: bash -c "tail -f log/development.log"
+    # command: bash -c "rails s -b '0.0.0.0'"
+    volumes:
+      - ./backend:/backend
+    ports:
+      - "3001:3000"
+    depends_on:
+      - db
+    tty: true
+    stdin_open: true
+    env_file:
+      - ./.env.local
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: bash -c "npm run dev"
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    tty: true
+    stdin_open: true
+    env_file:
+      - ./.env.local
+
+volumes:
+  postgres_data:
