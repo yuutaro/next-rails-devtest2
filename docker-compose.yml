@@ -15,8 +15,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    command: bash -c "tail -f log/development.log"
-    # command: bash -c "rails s -b '0.0.0.0'"
+    # command: bash -c "tail -f log/development.log"
+    command: bash -c "rails s -b '0.0.0.0'"
     volumes:
       - ./backend:/backend
     ports:
