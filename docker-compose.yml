@@ -8,7 +8,6 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: user
-      POSTGRES_DB: next-rails-devtest2-db
     ports:
       - "5432:5432"
 
