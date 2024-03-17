@@ -42,7 +42,7 @@ dockerコンテナ起動時に実行されるentrypoint.sh内で、ホストと�
 特定のユーザーで起動中のコンテナに入るには、
 ```
 docker-compose exec -u <user> <service_name> <command>
-docker-compose exec -u dockeruser rails /bin/bash
+docker-compose exec -u dockeruser backend /bin/bash
 ```
 
 を実行する。
