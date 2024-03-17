@@ -10,9 +10,15 @@ gem "pg", "~> 1.1"
 
 gem "puma", "~> 5.0"
 
+# cors設定用
+gem "rack-cors"
+
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "bootsnap", require: false
+
+# 環境毎の設定を管理
+gem "config"
 
 group :development, :test do
   # psyコンソールを使用出来るようにする
